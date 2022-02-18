@@ -1,0 +1,7 @@
+{
+  "/api/graphql": {
+    "target": "https://bahnql.herokuapp.com/graphql?",
+    "secure": true,
+    "changeOrigin": true
+  }
+}
