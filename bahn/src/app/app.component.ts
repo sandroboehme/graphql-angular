@@ -12,6 +12,7 @@ export class AppComponent {
   name = new FormControl('');
 
   constructor() {
+    this.name.valueChanges.subscribe(newValue => console.log("changed observable: ", newValue));
 
     resolved(() => {
       return query.search({searchTerm: "Karlsruhe"})!.stations.map( station => {
@@ -30,21 +31,9 @@ export class AppComponent {
       .catch((err) => {
         console.log("error: ", err);
       });
-
-    // const possibleData = inlineResolved(() => {
-    //   return query.helloWorld!;
-    // });
-    //
-    // if (possibleData instanceof Promise) {
-    //   // data == Promise<string>
-    //
-    //   // Waiting for data from API
-    //   const data = await possibleData;
-    //
-    //   // data == string
-    // } else {
-    //   // possibleData == string
-    // }
   }
 
+  onSubmit() {
+    console.log("submit");
+  }
 }

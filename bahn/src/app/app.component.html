@@ -305,7 +305,7 @@
 <div class="content" role="main">
   <h1>Bahn GraphQL Example</h1>
   <pre>{{ name.value | json }}</pre>
-  <form #trainStationForm="ngForm">
+  <form (ngSubmit)="onSubmit()">
     <mat-form-field appearance="legacy">
       <span matPrefix> </span>
       <input type="text" matInput name= "search" class="form-control" id="name"
@@ -314,6 +314,7 @@
       <button matSuffix mat-button><mat-icon >search</mat-icon></button>
     </mat-form-field>
     <br/>
+    <input type="submit" hidden />
   </form>
 </div>
 
