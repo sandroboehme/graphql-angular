@@ -16,30 +16,28 @@ export interface TrainStation {
 export class AppComponent {
 
   name = new FormControl('');
+  trainStations: TrainStation[] = [];
 
   constructor() {
     this.name.valueChanges.subscribe(newValue => console.log("changed observable: ", newValue));
-
-    resolved(() => {
-      return query.search({searchTerm: "Karlsruhe"})!.stations.map( station => {
-          const mappedStation = {
-            stationName: station.name,
-            'picture': station.picture?.url
-          };
-          return mappedStation;
-        }
-      );
-      // return query.stationWithEvaId({evaId: 8000105})!.name;
-    })
-      .then((data) => {
-        console.log("data: ", data);
-      })
-      .catch((err) => {
-        console.log("error: ", err);
-      });
   }
 
   onSubmit() {
-    console.log("submit");
+    resolved(() => {
+      return query.search({searchTerm: this.name.value})!.stations.map( station => {
+          return {
+            'name': station.name,
+            'pictureURL': station.picture?.url
+          };
+        }
+      );
+      // return query.stationWithEvaId({evaId: 8000105})!.name;
+    }).then((data) => {
+      // @ts-ignore
+      this.trainStations = data;
+    })
+      .catch((err) => {
+        console.log("error: ", err);
+      });
   }
 }

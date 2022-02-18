@@ -304,7 +304,6 @@
 
 <div class="content" role="main">
   <h1>Bahn GraphQL Example</h1>
-  <pre>{{ name.value | json }}</pre>
   <form (ngSubmit)="onSubmit()">
     <mat-form-field appearance="legacy">
       <span matPrefix> </span>
@@ -316,6 +315,12 @@
     <br/>
     <input type="submit" hidden />
   </form>
+  <div *ngFor="let trainStation of trainStations">
+    <mat-card>
+      <mat-card-title>{{trainStation.name}}</mat-card-title>
+      <img mat-card-image src="{{trainStation.pictureURL}}">
+    </mat-card>
+  </div>
 </div>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
