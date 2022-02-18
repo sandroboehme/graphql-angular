@@ -2,6 +2,12 @@ import { Component } from '@angular/core';
 import { query, resolved } from '../gqty';
 import { FormControl, FormControlName } from '@angular/forms';
 
+
+export interface TrainStation {
+  name: string,
+  pictureURL: string
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
