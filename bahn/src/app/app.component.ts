@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { query, resolved } from '../gqty';
+import { FormControl, FormControlName } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +8,21 @@ import { query, resolved } from '../gqty';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'bahn';
+
+  name = new FormControl('');
 
   constructor() {
 
     resolved(() => {
-      // return query.search({searchTerm: "Karlsruhe"})!.stations;
-      return query.stationWithEvaId({evaId: 8000105})!.name;
+      return query.search({searchTerm: "Karlsruhe"})!.stations.map( station => {
+          const mappedStation = {
+            stationName: station.name,
+            'picture': station.picture?.url
+          };
+          return mappedStation;
+        }
+      );
+      // return query.stationWithEvaId({evaId: 8000105})!.name;
     })
       .then((data) => {
         console.log("data: ", data);

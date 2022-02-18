@@ -327,7 +327,13 @@
 
 <div class="content" role="main">
   <h1>Bahn GraphQL Example</h1>
-
+  <pre>{{ name.value | json }}</pre>
+  <form #trainStationForm="ngForm">
+    <input type="text" class="form-control" id="name"
+           [formControl]="name"
+           required>
+  </form>
+  <button type="submit" class="btn btn-success" >Submit</button>
 </div>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
@@ -338,4 +344,4 @@
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-<router-outlet></router-outlet>
+<!--<router-outlet></router-outlet>-->
