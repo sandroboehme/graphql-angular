@@ -18,9 +18,14 @@ export class AppComponent {
   name = new FormControl('');
   trainStations: TrainStation[] = [];
 
-  constructor() {
-    this.name.valueChanges.subscribe(newValue => console.log("changed observable: ", newValue));
-  }
+  // search(searchTerm: "Karlsruhe") {
+  //   stations {
+  //     name
+  //     picture {
+  //       url
+  //     }
+  //   }
+  // }
 
   onSubmit() {
     resolved(() => {
@@ -28,12 +33,10 @@ export class AppComponent {
           return {
             'name': station.name,
             'pictureURL': station.picture?.url
-          };
+          } as TrainStation;
         }
       );
-      // return query.stationWithEvaId({evaId: 8000105})!.name;
     }).then((data) => {
-      // @ts-ignore
       this.trainStations = data;
     })
       .catch((err) => {
